@@ -24,7 +24,6 @@ export default function Index() {
   const [activeTask, setActiveTask] = useState({});
 
   const handleChange = (name?: string, status?: boolean) => {
-    console.log(name);
     if (name) {
       setName(name);
     }
@@ -42,7 +41,7 @@ export default function Index() {
       <View>
         {taskList
           ? taskList.map((data) => (
-              <View key={data.id}>
+              <View style={styles.list} key={data.id}>
                 <Text>{data.name}</Text>
               </View>
             ))
@@ -52,13 +51,15 @@ export default function Index() {
   };
   return (
     <View style={styles.container}>
-      <TextInput
-        style={styles.input}
-        value={name}
-        placeholder="Enter your task"
-        onChangeText={handleChange}
-      />
-      <Button title="Submit" onPress={handleSubmit} />
+      <View>
+        <TextInput
+          style={styles.input}
+          value={name}
+          placeholder="Enter your task"
+          onChangeText={handleChange}
+        />
+        <Button title="Submit" onPress={handleSubmit} />
+      </View>
       {renderList()}
     </View>
   );
@@ -66,21 +67,18 @@ export default function Index() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    margin: 20,
     justifyContent: "center",
     alignItems: "center",
-  },
-  multiInput: {
-    width: 300,
-    margin: 12,
-    borderWidth: 1,
-    padding: 10,
   },
   input: {
     height: 40,
     width: 300,
-    margin: 12,
+    marginBottom:12,
     borderWidth: 1,
     padding: 10,
   },
+  list:{
+    flexDirection: 'row',
+  }
 });
